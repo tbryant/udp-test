@@ -1,0 +1,14 @@
+{
+  "name": "udp-test",
+  "version": "1.0.0",
+  "description": "udp test",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tyler Bryant",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
+}
