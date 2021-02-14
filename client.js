@@ -20,6 +20,7 @@ setInterval(() => {
   message = Date.now().toString();
   client.send(Buffer.from(message), port, host, function (error) {
     if (error) {
+      console.error(error);
       client.close();
     } else {
       console.log("Data Sent: ", message);
