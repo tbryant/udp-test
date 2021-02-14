@@ -6,9 +6,6 @@ const port = argv.port || 8080;
 // creating a client socket
 var client = udp.createSocket("udp4");
 
-//buffer msg
-var data = new Uint8Array([1, 2, 3]);
-
 client.on("message", function (msg, info) {
   console.log("Data received from server : " + msg.toString());
   console.log(
@@ -19,23 +16,13 @@ client.on("message", function (msg, info) {
   );
 });
 
-//sending msg
-client.send(data, port, host, function (error) {
-  if (error) {
-    client.close();
-  } else {
-    console.log("Data sent !!!");
-  }
-});
-
-var data1 = Buffer.from("hello");
-var data2 = Buffer.from("world");
-
-//sending multiple msg
-client.send([data1, data2], port, host, function (error) {
-  if (error) {
-    client.close();
-  } else {
-    console.log("Data sent !!!");
-  }
-});
+setInterval(() => {
+  message = Date.now().toString();
+  client.send(Buffer.from(message), port, host, function (error) {
+    if (error) {
+      client.close();
+    } else {
+      console.log("Data Sent: ", message);
+    }
+  });
+}, 1000);

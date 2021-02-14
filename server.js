@@ -1,6 +1,6 @@
 const udp = require("dgram");
 var argv = require("minimist")(process.argv.slice(2));
-var port = argv.port || 8080;
+const port = argv.port || 8080;
 
 // --------------------creating a udp server --------------------
 
@@ -24,11 +24,11 @@ server.on("message", function (msg, info) {
   );
 
   //sending msg
-  server.send(msg, info.port, "localhost", function (error) {
+  server.send(msg, info.port, info.address, function (error) {
     if (error) {
-      client.close();
+      console.error(error)
     } else {
-      console.log("Data sent !!!");
+      console.log("Data Sent");
     }
   });
 });
